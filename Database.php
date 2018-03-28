@@ -1,21 +1,12 @@
 <?php
 class Database extends PDO
 {
- 
- //dbname
  private $dbname = "eimybase";
- //host
  private $host = "149.56.45.137";
- //user database
  private $user = "postgres";
- //password user
  private $pass = 'teleco';
- //port
  private $port = 5432;
-    //instance
  private $dbh;
- 
- //connect with postgresql and pdo
  public function __construct()
  {
      try {
@@ -25,13 +16,8 @@ class Database extends PDO
         {
          echo  $e->getMessage();
      }
- 
  }
- 
- //función para cerrar una conexión pdo
  public function close()
  {
     	$this->dbh = null;
  }
- 
-}
