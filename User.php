@@ -46,7 +46,7 @@ $this->con->close();
     public function update()
 {
 try{
-$query = $this->con->prepare('UPDATE users SET id = ?, username = ?, password = ? WHERE id = ?');
+$query = $this->con->prepare('UPDATE users SET id = ?, username = ?, password = ?');
 $query->bindParam(1, $this->id, PDO::PARAM_INT);
 $query->bindParam(2, $this->username, PDO::PARAM_STR);
 $query->bindParam(3, $this->password, PDO::PARAM_STR);
