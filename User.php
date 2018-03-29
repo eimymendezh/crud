@@ -13,18 +13,15 @@ public function __construct(Database $db)
 {
 $this->con = new $db;
 }
- 
-    public function setId($id)
+     public function setId($id)
     {
         $this->id = $id;
     }
- 
-    public function setUsername($username)
+     public function setUsername($username)
     {
         $this->username = $username;
     }
- 
-    public function setPassword($password)
+     public function setPassword($password)
     {
         $this->password = $password;
     }
@@ -33,9 +30,10 @@ $this->con = new $db;
 public function save()
 {
 try{
-$query = $this->con->prepare('INSERT INTO users (username, password) values (?,?)');
-            $query->bindParam(1, $this->username, PDO::PARAM_STR);
-$query->bindParam(2, $this->password, PDO::PARAM_STR);
+$query = $this->con->prepare('INSERT INTO users (id, username, password) values (?,?,?)');
+$query->bindParam(1, $this->id, PDO::PARAM_INT);
+$query->bindParam(2, $this->username, PDO::PARAM_STR);
+$query->bindParam(3, $this->password, PDO::PARAM_STR);
 $query->execute();
 $this->con->close();
 }
@@ -48,10 +46,10 @@ $this->con->close();
     public function update()
 {
 try{
-$query = $this->con->prepare('UPDATE users SET username = ?, password = ? WHERE id = ?');
-$query->bindParam(1, $this->username, PDO::PARAM_STR);
-$query->bindParam(2, $this->password, PDO::PARAM_STR);
-            $query->bindParam(3, $this->id, PDO::PARAM_INT);
+$query = $this->con->prepare('UPDATE users SET id = ?, username = ?, password = ? WHERE id = ?');
+$query->bindParam(1, $this->id, PDO::PARAM_INT);
+$query->bindParam(2, $this->username, PDO::PARAM_STR);
+$query->bindParam(3, $this->password, PDO::PARAM_STR);
 $query->execute();
 $this->con->close();
 }
